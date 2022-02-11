@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Codes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #key-code {
+            font-family: monospace;
+            font-size: 5rem;
+            position: fixed;
+            top: 50vh;
+            left: 0;
+            width: 100vw;
+            text-align: center;
+            vertical-align: middle;
+            transform: translateY(-50%);
+        }
+
+        #history {
+            font-family: monospace;
+            font-size: 2rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="history"></p>
+    <p id="key-code">Press a key...</p>
+
+    <script>
+        let history = new Set();
+        document.addEventListener('keydown', function (e) {
+            e.preventDefault();
+            document.querySelector('#key-code').textContent = `${e.key} - ${e.keyCode}`;
+            history.add(`${e.key} - ${e.keyCode}`);
+            document.querySelector('#history').innerHTML = [...history].join('<br>');
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
+</body>
+
+</html>
